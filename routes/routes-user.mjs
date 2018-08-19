@@ -10,7 +10,11 @@ router.get('/', (req, res, next) => {
     .then(snapshot => {
       const results = [];
       snapshot.forEach(x => results.push(new User(x.data())));
-      res.status(200).json(results.filter(f => !f.invalid));
+      if (results) {
+        res.status(200).json(results.filter(f => !f.invalid));
+      } else {
+        res.status(200).json([]);
+      }
     })
     .catch(next);
 });
@@ -28,6 +32,20 @@ router.get('/:id', (req, res, next) => {
       }
     })
     .catch(next);
+});
+
+router.post('/create', (req, res, next) => {
+  const data = new User(req.body);
+  if (!data.invalid) {
+    const setDoc = db
+      .collection('users')
+      .doc(req.body.first)
+      .set(JSON.parse(JSON.stringify(data)))
+      .then(response => res.status(200).json(response))
+      .catch(next);
+  } else {
+    res.status(500).json({ message: 'missing required fields' });
+  }
 });
 
 export default router;
