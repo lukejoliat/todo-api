@@ -1,8 +1,9 @@
 import express from 'express';
+import { check } from 'express-validator/check';
 import { db } from '../config/config';
 import User from '../models/User';
-import { check } from 'express-validator/check';
 import utils from '../utils/utils';
+
 const router = express.Router();
 /**
  * Get all Users
@@ -11,7 +12,7 @@ router.get('/', (req, res, next) => {
   const usersRef = db.collection('users');
   usersRef
     .get()
-    .then(snapshot => {
+    .then((snapshot) => {
       const results = [];
       snapshot.forEach(x => results.push(new User(x.data())));
       if (results) {
@@ -31,25 +32,23 @@ router.get(
   [
     check('id')
       .exists()
-      .withMessage('must be provided')
+      .withMessage('must be provided'),
   ],
   utils.failIfInvalid,
   (req, res, next) => {
-    const id = req.params.id;
+    const { id } = req.params;
     db.collection('users')
       .doc(req.params.id)
       .get()
-      .then(doc => {
+      .then((doc) => {
         if (!doc.exists) {
-          res
-            .status(404)
-            .json({ message: `User with id: ${id} does not exist!` });
+          res.status(404).json({ message: `User with id: ${id} does not exist!` });
         } else {
           res.status(200).json(doc.data());
         }
       })
       .catch(next);
-  }
+  },
 );
 
 /**
@@ -60,12 +59,10 @@ router.post('/create', (req, res, next) => {
   if (!data.invalid) {
     db.collection('users')
       .add(JSON.parse(JSON.stringify(data)))
-      .then(response =>
-        res.status(200).json({ message: `created: ${response.id}.` })
-      )
+      .then(response => res.status(200).json({ message: `created: ${response.id}.` }))
       .catch(next);
   } else {
-    res.status(500).json({ message: `invalid payload` });
+    res.status(500).json({ message: 'invalid payload' });
   }
 });
 
@@ -79,15 +76,14 @@ router.delete(
     .withMessage('must be provided'),
   utils.failIfInvalid,
   (req, res, next) => {
-    const id = req.params.id,
-      userRef = db.collection('users').doc(id);
+    const { id } = req.params;
+    const userRef = db.collection('users').doc(id);
+
     userRef
       .delete()
-      .then(response =>
-        res.status(200).json({ message: `deleted: ${userRef.id}.` })
-      )
+      .then(() => res.status(200).json({ message: `deleted: ${userRef.id}.` }))
       .catch(next);
-  }
+  },
 );
 
 /**
@@ -106,39 +102,36 @@ router.patch(
       .exists()
       .withMessage('must be provided')
       .isString()
-      .withMessage('must be a string')
+      .withMessage('must be a string'),
   ],
   utils.failIfInvalid,
   (req, res, next) => {
-    const id = req.params.id,
-      { first, last } = req.body,
-      userRef = db.collection('users').doc(id);
+    const { id } = req.params;
+    const { first, last } = req.body;
+    const userRef = db.collection('users').doc(id);
+
     userRef
       .get()
-      .then(doc => {
+      .then((doc) => {
         if (doc.exists) {
           const data = new User({
-            first: first,
-            last: last
+            first,
+            last,
           });
           if (!data.invalid) {
             userRef
               .update(JSON.parse(JSON.stringify(data)))
-              .then(response =>
-                res.status(200).json({ message: `updated: ${userRef.id}.` })
-              )
+              .then(() => res.status(200).json({ message: `updated: ${userRef.id}.` }))
               .catch(next);
           } else {
-            res.status(500).json({ message: `invalid payload` });
+            res.status(500).json({ message: 'invalid payload' });
           }
         } else {
-          res
-            .status(404)
-            .json({ message: `User with id: ${id} does not exist!` });
+          res.status(404).json({ message: `User with id: ${id} does not exist!` });
         }
       })
       .catch(next);
-  }
+  },
 );
 
 export default router;
