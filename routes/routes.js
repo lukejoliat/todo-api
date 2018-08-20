@@ -3,10 +3,12 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import UserRoutes from './routes-user';
 import TodoRoutes from './routes-todo';
+import utils from '../utils/utils';
 const router = express.Router();
 router
   .use(morgan('dev'))
   .use(bodyParser.json())
+  .use(utils.isAuthenticated)
   .use('/users', UserRoutes)
   .use('/todos', TodoRoutes);
 

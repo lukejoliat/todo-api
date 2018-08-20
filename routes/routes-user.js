@@ -4,7 +4,6 @@ import User from '../models/User';
 import { check } from 'express-validator/check';
 import utils from '../utils/utils';
 const router = express.Router();
-
 /**
  * Get all Users
  */

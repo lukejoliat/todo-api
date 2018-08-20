@@ -10,6 +10,11 @@ export default {
     }
   },
   isAuthenticated: (req, res, next) => {
-    console.log(req);
+    const user = { isAuthenticated: true };
+    if (user.isAuthenticated) {
+      next();
+    } else {
+      next(new Error('not authenticated'));
+    }
   }
 };
