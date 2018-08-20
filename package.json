@@ -6,10 +6,16 @@
   "scripts": {
     "start": "nodemon --exec babel-node -- index",
     "test": "jest tests",
-    "coverage": "jest --collectCoverageFrom=tests/**.js --coverage tests"
+    "coverage": "jest --coverage"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/config/**"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -26,7 +32,6 @@
     "babel-cli": "^6.26.0",
     "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",

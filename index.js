@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import router, { errorHandler } from './routes/routes';
-import config from './config/config';
+import router, { errorHandler } from './src/routes/routes';
+import config from './src/config/config';
 
 const app = express(); // an instance of express
 const PORT = config.port || 3000;
