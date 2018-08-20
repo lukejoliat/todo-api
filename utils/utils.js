@@ -8,5 +8,8 @@ export default {
     } else {
       next();
     }
+  },
+  isAuthenticated: (req, res, next) => {
+    console.log(req);
   }
 };
