@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import UserRoutes from './routes-user.mjs';
-import TodoRoutes from './routes-todo.mjs';
+import UserRoutes from './routes-user';
+import TodoRoutes from './routes-todo';
 const router = express.Router();
 router
   .use(morgan('dev'))
