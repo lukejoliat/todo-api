@@ -1,5 +1,18 @@
-const sum = (a, b) => a + b;
+import User from '../models/User';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('reads data into properties', () => {
+  const todo = new User({ first: 'jon', last: 'smith' });
+  expect(todo.invalid).toBe(undefined);
+  expect(todo.first).toBe('jon');
+  expect(todo.last).toBe('smith');
+});
+
+test('requires first name', () => {
+  const todo = new User({ first: 'jon' });
+  expect(todo.invalid).toBe(true);
+});
+
+test('requires last name', () => {
+  const todo = new User({ last: 'smith' });
+  expect(todo.invalid).toBe(true);
 });

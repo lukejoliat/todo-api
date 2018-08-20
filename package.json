@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node starter.js",
+    "start": "nodemon --exec babel-node -- index",
     "test": "jest tests",
     "coverage": "jest --collectCoverageFrom=tests/**.js --coverage tests"
+  },
+  "jest": {
+    "verbose": true
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "eslint-plugin-jest": "^21.21.0",
     "express": "^4.16.3",
     "express-validator": "^5.3.0",
     "firebase-admin": "^6.0.0",
@@ -21,10 +23,15 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.21.0",
+    "nodemon": "^1.18.3",
+    "regenerator-runtime": "^0.12.1"
   }
 }
