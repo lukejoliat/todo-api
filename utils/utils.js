@@ -11,6 +11,7 @@ export default {
   },
   isAuthenticated: (req, res, next) => {
     const user = { isAuthenticated: true };
+    user = 'test';
     if (user.isAuthenticated) {
       next();
     } else {
