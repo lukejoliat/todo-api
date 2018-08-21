@@ -1,14 +1,14 @@
 import Todo from '../models/Todo';
 
 test('reads data into properties', () => {
-  const todo = new Todo({ title: 'test', status: 'incomplete' });
+  const todo = new Todo({ title: 'test', complete: false });
   expect(todo.invalid).toBe(undefined);
   expect(todo.title).toBe('test');
-  expect(todo.status).toBe('incomplete');
+  expect(todo.complete).toBe(false);
 });
 
 test('requires title', () => {
-  const todo = new Todo({ status: 'complete' });
+  const todo = new Todo({ complete: false });
   expect(todo.invalid).toBe(true);
 });
 

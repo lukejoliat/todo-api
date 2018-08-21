@@ -1,9 +1,9 @@
 export default class Todo {
-  constructor({ title, status }) {
-    this.title = title;
-    this.status = status;
+  constructor({ title, complete }) {
+    this.title = `${title}`;
+    this.complete = complete;
 
-    if (!title || !status) {
+    if (typeof title === 'undefined' || typeof this.complete === 'undefined') {
       this.invalid = true;
     }
   }

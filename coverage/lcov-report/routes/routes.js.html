@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>6/6</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -70,52 +70,49 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import express from 'express';</span>
-<span class="cstat-no" title="statement not covered" >import bodyParser from 'body-parser';</span>
-<span class="cstat-no" title="statement not covered" >import morgan from 'morgan';</span>
-<span class="cstat-no" title="statement not covered" >import UserRoutes from './routes-user';</span>
-<span class="cstat-no" title="statement not covered" >import TodoRoutes from './routes-todo';</span>
-<span class="cstat-no" title="statement not covered" >import utils from '../utils/utils';</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import express from 'express';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import TodoRoutes from './routes-todo';
+import utils from '../utils/utils';
 &nbsp;
-const router = <span class="cstat-no" title="statement not covered" >new express.Router();</span>
-<span class="cstat-no" title="statement not covered" >router</span>
+const router = new express.Router();
+router
   .use(morgan('dev'))
   .use(bodyParser.json())
   .use(utils.isAuthenticated)
-  .use('/users', UserRoutes)
   .use('/todos', TodoRoutes);
 &nbsp;
 // Server index.html page when request to the root is made
-<span class="cstat-no" title="statement not covered" >router.get('/', <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>req, res) =&gt; res.sendfile('./public/index.html'));</span></span>
+router.get('/', (req, res) =&gt; res.sendfile('./public/index.html'));
 &nbsp;
-const <span class="fstat-no" title="function not covered" >errorHandler = <span class="cstat-no" title="statement not covered" >(</span>err, req, res) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  res.status(err.status || 500).json({ message: err.message || 'Something broke!' });</span>
+const errorHandler = (err, req, res, next) =&gt; {
+  res.status(err.status || <span class="branch-1 cbranch-no" title="branch not covered" >500)</span>.json({ message: err.message || <span class="branch-1 cbranch-no" title="branch not covered" >'Something broke!' </span>});
+  next();
 };
 &nbsp;
 export { errorHandler };
@@ -127,7 +124,7 @@ export default router;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 20 2018 13:05:07 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 20 2018 14:40:47 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>
