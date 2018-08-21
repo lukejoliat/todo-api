@@ -9,7 +9,7 @@ export default {
     return next();
   },
   isAuthenticated: (req, res, next) => {
-    const user = { isAuthenticated: true };
+    const user = { isAuthenticated: false };
     if (user.isAuthenticated) {
       next();
     } else {
