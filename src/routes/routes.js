@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import TodoRoutes from './routes-todo';
 import utils from '../utils/utils';
+import TodoRoutes from './routes-todo';
 
 const router = new express.Router();
 router
@@ -14,8 +14,8 @@ router
 // Server index.html page when request to the root is made
 router.get('/', (req, res) => res.sendfile('./public/index.html'));
 
-const errorHandler = (err, req, res, next) => {
-  res.status(err.status || 500).json({ message: err.message || 'Something broke!' });
+const errorHandler = ({ status, message }, req, res, next) => {
+  res.status(status || 500).json({ message: message || 'Something broke!' });
   next();
 };
 

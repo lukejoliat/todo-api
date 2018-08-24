@@ -1,4 +1,4 @@
-import * as serviceAccount from '../keys/dev/todo-969aa-firebase-adminsdk-u7f5y-e7a2eb6f5c.json';
+import * as serviceAccount from '../keys/prod/todo-969aa-firebase-adminsdk-u7f5y-e7a2eb6f5c.json';
 
 export default {
   port: 3000,

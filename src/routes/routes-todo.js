@@ -1,8 +1,8 @@
 import express from 'express';
 import { check } from 'express-validator/check';
 import Todo from '../models/Todo';
-import { db } from '../config/config';
 import utils from '../utils/utils';
+import { db } from '../firebase/firebase';
 
 const router = express.Router();
 
